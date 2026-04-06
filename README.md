@@ -1,16 +1,105 @@
-# sentimentServer
+# Sentiment Analysis Server
 
-This is normal server that is built using python flask, you can send post request that contain "sentences" on this server using url and find the answer of that sentences sentiment.......
-URL : https://sentimentserver.onrender.com
+A lightweight, robust Sentiment Analysis Server built with **Python Flask** and **NLTK (Natural Language Toolkit)**. This server provides an API to analyze the sentiment of one or multiple sentences using the VADER (Valence Aware Dictionary and sEntiment Reasoner) Lexicon.
 
-and, If you want to test this server then go to this ..........
-URL : https://sentimentserver.onrender.com/test
+## 🚀 Live Demo
+- **API Endpoint:** [https://sentimentserver.onrender.com](https://sentimentserver.onrender.com)
+- **Interactive Web Tester:** [https://sentimentserver.onrender.com/test](https://sentimentserver.onrender.com/test)
 
+## ✨ Features
+- **Batch Processing:** Analyze multiple sentences in a single request.
+- **Detailed Metrics:** Provides Positive, Negative, Neutral, and Compound scores.
+- **Web Interface:** Includes a built-in UI for quick testing.
+- **Developer Friendly:** Simple REST API that can be integrated with any frontend or backend.
 
-If you want to send request using python then code : 
+## 🛠️ Tech Stack
+- **Backend:** Flask (Python)
+- **Sentiment Engine:** NLTK Vader
+- **Frontend:** HTML, Bootstrap, jQuery (for testing interface)
+- **Deployment:** Render
 
-![image](https://user-images.githubusercontent.com/89396219/229100716-c2eb5ad9-0f19-496f-b75b-facfb6c10e1d.png)
+## 📥 Local Installation
 
-If you want to send request from node js then code : 
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Satish-Tiwari/sentiment-server.git
+   cd sentiment-server
+   ```
 
-![image](https://user-images.githubusercontent.com/89396219/229100878-7f9e4668-7e4f-4a49-a613-9b839a4c3b9a.png)
+2. **Create and activate a virtual environment:**
+   ```bash
+   python -m venv venv
+   # On Windows:
+   .\venv\Scripts\activate
+   # On macOS/Linux:
+   source venv/bin/activate
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run the server:**
+   ```bash
+   python app.py
+   ```
+   The server will start at `http://127.0.0.1:5000`.
+
+## 📡 API Usage
+
+### 🔍 Analyze Sentences
+- **URL:** `/`
+- **Method:** `POST`
+- **Headers:** `Content-Type: application/json`
+- **Body:** 
+  ```json
+  {
+    "sentences": [
+      "I love this project!",
+      "This is a bad day.",
+      "The weather is neutral today."
+    ]
+  }
+  ```
+
+- **Response:**
+  ```json
+  [
+    { "neg": 0.0, "neu": 0.192, "pos": 0.808, "compound": 0.6696 },
+    { "neg": 0.538, "neu": 0.462, "pos": 0.0, "compound": -0.5423 },
+    { "neg": 0.0, "neu": 1.0, "pos": 0.0, "compound": 0.0 }
+  ]
+  ```
+
+## 💻 Code Examples
+
+### Python
+```python
+import requests
+
+url = "https://sentimentserver.onrender.com"
+data = {
+    "sentences": ["Python is amazing!", "I am feeling great."]
+}
+
+response = requests.post(url, json=data)
+print(response.json())
+```
+
+### Node.js (Axios)
+```javascript
+const axios = require('axios');
+
+const url = "https://sentimentserver.onrender.com";
+const data = {
+    sentences: ["JavaScript is powerful.", "Errors are frustrating."]
+};
+
+axios.post(url, data)
+    .then(response => console.log(response.data))
+    .catch(error => console.error(error));
+```
+
+## 📝 License
+This project is open-source and available under the [MIT License](LICENSE).
